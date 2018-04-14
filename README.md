@@ -13,9 +13,12 @@ start -> read config -> initialize -> fork process -> read and parse request
 
 ## todo
 
-- [ ] http protocol structure
 - [ ] multi process model
 - [ ] multi thread model
-- [ ] reactor model
+- [ ] epoll/kqueue model
+- [ ] http parser
+- [ ] reator model
 - [ ] fastcgi protocol
 - [ ] load balance
+- [ ] cache response
+- [ ] logger
