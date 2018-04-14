@@ -41,6 +41,11 @@ Content-Length: 105
 <html><head><title>PHP HTTP SERVER RESPONSE</title></head><body>  Welcome to Php Http Server  </body></html>
 s;
 
+        // 通用技术：
+        // 1. 负载均衡
+        // 2. 日志
+        // 3. 缓存
+
         // ③ 返回数据
         @fwrite($conn, $response);
 

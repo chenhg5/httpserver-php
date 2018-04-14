@@ -18,3 +18,4 @@ start -> read config -> initialize -> fork process -> read request
 - [ ] multi thread model
 - [ ] reactor model
 - [ ] fastcgi protocol
+- [ ] load balance
