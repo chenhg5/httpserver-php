@@ -13,17 +13,18 @@ $serv = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr) or die("crea
 // 单进程模型
 $i = 0;
 while (1) {
-    // 永不超时
+    // -1 永不超时
     $conn = @stream_socket_accept($serv, -1);
     echo $i . "\n";
+    // fork一个进程
     $pid = pcntl_fork();
     if ($pid == 0) {
         echo "process id: " . posix_getpid() . "\n";
 
         // 获取请求信息
-        $request = @fread($conn, 10);
+        $request = @fread($conn, 30000);  // 粗暴的设置长度
         echo "connected\n";
-        echo "request info: " . $request . "\n";
+        echo "request info: \n\n" . $request . "\n";
 
         // 根据请求信息与路由配置指向指定路由 获取信息构造返回
         $response = <<<s
