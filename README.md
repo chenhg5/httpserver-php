@@ -6,7 +6,7 @@ a http server writed by php which support several network models.
 
 ```
 
-start -> read config -> initialize -> fork process -> read request 
+start -> read config -> initialize -> fork process -> read and parse request 
 -> process request -> cgi/response -> write log
 
 ``` 

@@ -50,6 +50,10 @@ s;
         @fwrite($conn, $response);
 
         fclose($conn);
+
+        // kill 当前进程
+        posix_kill(posix_getpid(),SIGTERM);
+
         exit(0);
     }
     $i++;
