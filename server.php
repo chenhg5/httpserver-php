@@ -14,14 +14,14 @@ $serv = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr) or die("crea
 $i = 0;
 while (1) {
     // 永不超时
-    $conn = stream_socket_accept($serv, -1);
+    $conn = @stream_socket_accept($serv, -1);
     echo $i . "\n";
     $pid = pcntl_fork();
     if ($pid == 0) {
         echo "process id: " . posix_getpid() . "\n";
 
         // 获取请求信息
-        $request = fread($conn, 10);
+        $request = @fread($conn, 10);
         echo "connected\n";
         echo "request info: " . $request . "\n";
 

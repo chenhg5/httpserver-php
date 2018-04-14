@@ -17,3 +17,4 @@ start -> read config -> initialize -> fork process -> read request
 - [ ] multi process model
 - [ ] multi thread model
 - [ ] reactor model
+- [ ] fastcgi protocol
