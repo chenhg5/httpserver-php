@@ -22,3 +22,4 @@ start -> read config -> initialize -> fork process -> read and parse request
 - [ ] load balance
 - [ ] cache response
 - [ ] logger
+- [ ] https support
