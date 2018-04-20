@@ -14,17 +14,13 @@ const SINGLE_PROCESS_COROITINES_MODE = 7;
 
 class BaseModel
 {
-
     private $serv;
 
-    function __construct()
-    {
-        set_time_limit(0);
+    protected $parser;
 
-        // 使用 stream_* 而不用 socket_*
-        // stream_* 支持更好
-        // doc: https://stackoverflow.com/questions/9760548/php-sockets-vs-streams/9783856#9783856
-        $this->serv = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr) or die("create server failed");
+    function __construct(Parser $parser)
+    {
+        $this->parser = $parser;
     }
 
     public function select($mode = null)
@@ -34,6 +30,13 @@ class BaseModel
 
     public function run($mode = null)
     {
+        set_time_limit(0);
+
+        // 使用 stream_* 而不用 socket_*
+        // stream_* 支持更好
+        // doc: https://stackoverflow.com/questions/9760548/php-sockets-vs-streams/9783856#9783856
+        $this->serv = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr) or die("create server failed");
+
         // 单进程模型：阻塞请求
         if (!$mode || $mode == SINGLE_PROCESS_MODE) {
             while (1) {
@@ -45,7 +48,7 @@ class BaseModel
                 $request = @fread($conn, 30000);  // 粗暴的设置长度
                 echo "connected\n";
                 echo "request info: \n\n" . $request . "\n";
-                var_dump(Parser::parseRequest($request));
+                var_dump($this->parser->parseRequest($request));
 
                 // ② 根据路由配置与请求判断响应类型：  $response = HttpProcessor::process($request)
                 // 1. 直接返回静态页面数据, 读取文件[css, html, pdf, etc]         FileReader::read($request)

@@ -10,8 +10,8 @@ class ServerProvider implements ServiceProviderInterface {
 
     public function register(Container $pimple)
     {
-        $pimple['server'] = function () {
-            return new BaseModel();
+        $pimple['server'] = function ($pimple) {
+            return new BaseModel($pimple['parser']);
         };
     }
 }

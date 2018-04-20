@@ -3,6 +3,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-$app = new HttpServer\Module\Application();
+$app = new HttpServer\Module\Application(
+    require __DIR__.'/config.php'
+);
 
-$app->run(isset($argv[1]) ? $argv[1] : null);
+$app->run(isset($argv[1]) ? $argv[1] : 1);

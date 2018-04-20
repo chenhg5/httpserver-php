@@ -5,7 +5,7 @@ namespace HttpServer\Module\Parser;
 class Parser {
 
     // 字符串解析
-    public static function parseRequest($request) {
+    public function parseRequest($request) {
         $split = explode("\r\n\r\n", $request);
         $content = explode("\r\n", $split[0]);
         $body = $split[1];

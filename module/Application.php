@@ -1,20 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chenhg5
- * Date: 2018/4/20
- * Time: 下午10:19
- */
 
 namespace HttpServer\Module;
 
+//use Monolog\Handler\ErrorLogHandler;
+//use Monolog\Handler\HandlerInterface;
+//use Monolog\Handler\StreamHandler;
 use Pimple\Container;
+use Monolog\Logger;
 
 /**
  * Class Application
  * @package HttpServer\Module
  *
- * @property \HttpServer\Module\Server\ServerModel $server
+ * @property \HttpServer\Module\Server\BaseModel $server
  */
 class Application extends Container
 {
@@ -41,21 +39,11 @@ class Application extends Container
     {
         parent::__construct($prepends);
 
-//        $this->registerConfig($config)
-//            ->registerProviders()
-//            ->registerLogger()
-//            ->registerRequest()
-//            ->registerHttpClient();
-
-        $this->registerProviders();
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
+        $this->registerConfig($config)
+            ->registerLogger()
+            ->registerRequest()
+            ->registerResponse()
+            ->registerProviders();
     }
 
     /**
@@ -80,6 +68,72 @@ class Application extends Container
             $this->register(new $provider());
         }
 
+        return $this;
+    }
+
+    /**
+     * Register application config.
+     *
+     * @param array $config
+     * @return $this
+     */
+    protected function registerConfig(array $config)
+    {
+        $this['config'] = $config;
+        return $this;
+    }
+
+    /**
+     * Register logger.
+     *
+     * @return $this
+     */
+    protected function registerLogger()
+    {
+        if (isset($this['logger'])) {
+            return $this;
+        }
+
+        $logger = new Logger(str_replace('\\', '.', strtolower(get_class($this))));
+
+//        if ($logFile = $this['config']['log.file']) {
+//            $logger->pushHandler(new StreamHandler(
+//                    $logFile,
+//                    $this['config']->get('log.level', Logger::WARNING),
+//                    true,
+//                    $this['config']->get('log.permission', null))
+//            );
+//        } elseif ($this['config']['log.handler'] instanceof HandlerInterface) {
+//            $logger->pushHandler($this['config']['log.handler']);
+//        } else {
+//            $logger->pushHandler(new ErrorLogHandler());
+//        }
+
+        $this['logger'] = $logger;
+
+        return $this;
+    }
+
+    /**
+     * Register server request handler.
+     *
+     * @return $this
+     */
+    protected function registerRequest()
+    {
+        $this['parser'] = function () {
+            return new Parser\Parser();
+        };
+        return $this;
+    }
+
+    /**
+     * Register server response handler.
+     *
+     * @return $this
+     */
+    protected function registerResponse()
+    {
         return $this;
     }
 
