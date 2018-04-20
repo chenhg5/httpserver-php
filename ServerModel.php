@@ -2,15 +2,15 @@
 
 namespace HttpServer;
 
-class ServerModel {
+const SINGLE_PROCESS_MODE = 1;
+const MULTI_PROCESS_MODE = 2;
+const MULTI_PROCESS_FIXED_MODE = 3;
+const MULTI_THREAD_MODE = 4;
+const SELECT_POLL_MODE = 5;
+const EPOLL_KQUEUE_MODE = 6;
+const SINGLE_PROCESS_COROITINES_MODE = 7;
 
-    const SINGLE_PROCESS_MODE = 1;
-    const MULTI_PROCESS_MODE = 2;
-    const MULTI_PROCESS_FIXED_MODE = 3;
-    const MULTI_THREAD_MODE = 4;
-    const SELECT_POLL_MODE = 5;
-    const EPOLL_KQUEUE_MODE = 6;
-    const SINGLE_PROCESS_COROITINES_MODE = 7;
+class ServerModel {
 
     private $serv;
 
@@ -37,6 +37,7 @@ class ServerModel {
                 $request = @fread($conn, 30000);  // 粗暴的设置长度
                 echo "connected\n";
                 echo "request info: \n\n" . $request . "\n";
+                var_dump(Module\Parser::parseRequest($request));
 
                 // ② 根据路由配置与请求判断响应类型：  $response = HttpProcessor::process($request)
                 // 1. 直接返回静态页面数据, 读取文件[css, html, pdf, etc]         FileReader::read($request)
