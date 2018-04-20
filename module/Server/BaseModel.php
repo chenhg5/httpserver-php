@@ -12,7 +12,7 @@ const SELECT_POLL_MODE = 5;
 const EPOLL_KQUEUE_MODE = 6;
 const SINGLE_PROCESS_COROITINES_MODE = 7;
 
-class ServerModel
+class BaseModel
 {
 
     private $serv;
