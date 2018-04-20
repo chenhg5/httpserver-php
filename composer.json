@@ -1,0 +1,16 @@
+{
+    "name": "chenhg5/httpserver-php",
+    "description": "a httpserver write by php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cg33",
+            "email": "chg80333@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HttpServer\\": "./"
+        }
+    }
+}

@@ -1,4 +1,7 @@
 <?php
+
+namespace HttpServer\Module;
+
 /**
  * Created by PhpStorm.
  * User: chenhg5

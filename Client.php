@@ -1,5 +1,7 @@
 <?php
 
+namespace HttpServer;
+
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 $result = socket_connect($socket, "0.0.0.0", 8000);
 
