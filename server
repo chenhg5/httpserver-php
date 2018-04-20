@@ -1,10 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-namespace HttpServer;
-
 require_once __DIR__.'/vendor/autoload.php';
 
-$server = new ServerModel();
+$app = new HttpServer\Module\Application();
 
-$server->run(isset($argv[1]) ? $argv[1] : null);
+$app->run(isset($argv[1]) ? $argv[1] : null);
