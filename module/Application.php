@@ -12,7 +12,8 @@ use Monolog\Logger;
  * Class Application
  * @package HttpServer\Module
  *
- * @property \HttpServer\Module\Server\BaseModel $server
+ * @property \HttpServer\Module\Server\ServerDispatcher $dispatcher
+ * @property \HttpServer\Module\Parser\Parser $parser
  */
 class Application extends Container
 {
@@ -21,7 +22,7 @@ class Application extends Container
      * @var array
      */
     protected $providers = [
-        Providers\ServerProvider::class
+        Providers\ServerDispatcherProvider::class
     ];
 
     /**
@@ -142,7 +143,7 @@ class Application extends Container
      */
     public function run($mode = null)
     {
-        $this->server->select($mode)->run();
+        $this->dispatcher->select($mode, $this->parser)->run();
     }
 
     /**
