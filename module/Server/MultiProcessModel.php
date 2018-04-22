@@ -13,7 +13,8 @@ class MultiProcessModel extends BaseModel
         for ($i = 0; $i < 32; $i++) {
             if (pcntl_fork() == 0) {
                 while (1) {
-                    $conn = stream_socket_accept($this->serv);
+                    $conn = @stream_socket_accept($this->serv, -1);
+                    if ($conn == false) continue;
                     echo "process id: " . posix_getpid() . "\n";
                     $request = @fread($conn, 30000);  // 粗暴的设置长度
                     echo "connected\n";
