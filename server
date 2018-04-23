@@ -6,9 +6,10 @@ fwrite(STDOUT, "请选择一个服务器模型：
 [2] 多进程累加模型✔️
 [3] 多进程固定进程模型✔️
 [4] 多线程模型✔️
-[5] 单进程协程模型
-[6] 事件驱动(EventPoll)模型
-[7] 反应堆(Reactor)模型
+[5] 单进程协程模型✔️
+[6] 流选择(SelectPoll)模型
+[7] 事件驱动(EPoll)模型
+[8] 反应堆(Reactor)模型
 [0] 退出
 ");
 $mode = fgets(STDIN);
@@ -23,4 +24,4 @@ $app = new HttpServer\Module\Application(
     require __DIR__.'/config.php'
 );
 
-$app->run($mode);
+$app->run((int)$mode);
