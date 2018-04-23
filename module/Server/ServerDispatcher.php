@@ -35,7 +35,6 @@ class ServerDispatcher
                 return new ReactorModel($parser);
             default:
                 throw new Exception('require mode');
-
         }
     }
 }
