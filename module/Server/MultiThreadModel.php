@@ -17,6 +17,9 @@ class MultiThreadModel extends BaseModel
             $threadPool[$i]->start();
         }
 
+        // zend_mm_heap corrupted 问题:
+        // 修改 output_buffering=4096 为 disable
+        // export USE_ZEND_ALLOC=0
         while (true) {
             $nowConn = @stream_socket_accept($this->serv, -1);
             if ($nowConn == false) {

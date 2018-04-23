@@ -1,10 +1,26 @@
 #!/usr/bin/env php
 <?php
 
+fwrite(STDOUT, "请选择一个服务器模型：
+[1] 单进程模型✔️
+[2] 多进程累加模型✔️
+[3] 多进程固定进程模型✔️
+[4] 多线程模型✔️
+[5] 单进程协程模型
+[6] 事件驱动(EventPoll)模型
+[7] 反应堆(Reactor)模型
+[0] 退出
+");
+$mode = fgets(STDIN);
+if ($mode == 0) {
+    die();
+}
+echo '您选择的是：'.$mode;
+
 require_once __DIR__.'/vendor/autoload.php';
 
 $app = new HttpServer\Module\Application(
     require __DIR__.'/config.php'
 );
 
-$app->run(isset($argv[1]) ? $argv[1] : 1);
+$app->run($mode);

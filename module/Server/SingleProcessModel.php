@@ -17,7 +17,6 @@ class SingleProcessModel extends BaseModel
             echo "process id: " . posix_getpid() . "\n";
 
             // ① 获取并解析请求信息 HttpRequest
-            var_dump($conn);
             $request = @fread($conn, 30000);  // 粗暴的设置长度
             if ($request) {
                 echo "connected\n";
