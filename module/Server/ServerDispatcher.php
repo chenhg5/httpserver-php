@@ -18,6 +18,8 @@ class ServerDispatcher
                 return new MultiProcessModel($parser);
             case 4:
                 return new MultiThreadModel($parser);
+            case 5:
+                return new SingleProcessCoroutineModel($parser);
             default:
                 return new SingleProcessModel($parser);
 
