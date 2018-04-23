@@ -17,7 +17,8 @@ class MultiFixedProcessModel extends BaseModel
 
         if (!function_exists('pcntl_signal'))
         {
-            printf("Error, you need to enable the pcntl extension in your php binary, see http://www.php.net/manual/en/pcntl.installation.php for more info%s", PHP_EOL);
+            echo "Error, you need to enable the pcntl extension in your php binary, 
+                  see http://www.php.net/manual/en/pcntl.installation.php for more info.";
             exit(1);
         }
 
