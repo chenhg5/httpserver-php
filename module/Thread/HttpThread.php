@@ -26,9 +26,10 @@ class HttpThread extends Thread
     {
         echo self::getCurrentThreadId() . '_' . $this->index . ' is ready.' . "\n";
         if ($this->mode == 1) {
-            // while 循环导致cpu爆炸 需要协程帮助调度
+            // while 循环导致cpu爆炸 需要usleep  可考虑协程帮助调度
             while ($this->runing) {
                 if (!$this->conn) {
+                    usleep(10000); // 微观层面释放cpu资源 不阻塞占用
                     continue;
                 }
 
