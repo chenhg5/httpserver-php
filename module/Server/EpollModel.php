@@ -41,23 +41,37 @@ class EpollModel extends BaseModel
         // 设置该socket为非阻塞模式
         stream_set_blocking($client, 0);
 
+        $response = <<<RES
+HTTP/1.1 200 OK
+Server: Microsoft-IIS/4.0.1
+Date: Mon, 5 Jan 1993 13:13:33 GMT
+Content-Type: text/html
+Last-Modified: Mon, 5 Jan 2004 13:13:12 GMT
+Content-Length: 105
+
+<html><head><title>PHP HTTP SERVER RESPONSE</title></head><body>  Welcome to Php Http Server  </body></html>
+RES;
+
+        fwrite($client, $response);
+
+
         // 创建一个新的缓存事件
         // TODO: segmentation fault
-        $buffer = event_buffer_new($client, ['\HttpServer\Module\Server\EpollModel', 'read'], null, ['\HttpServer\Module\Server\EpollModel', 'error'], $client);
-        var_dump($buffer);
-
-        // 关联缓存事件到事件库
-        event_buffer_base_set($buffer, $base);
-        // 缓存事件超时时间
-        event_buffer_timeout_set($buffer, 5, 5);
-        // 设置缓存事件读写的水印标记
-        event_buffer_watermark_set($buffer, EV_READ, 0, 0xffffff);
-        // 设置缓存事件的优先级
-        event_buffer_priority_set($buffer, 10);
-        // 启用缓存事件
-        event_buffer_enable($buffer, EV_READ | EV_PERSIST);
-        // 这里好像必需把$buffer赋给一个全局的变量
-        $GLOBALS['_'] = $buffer;
+//        $buffer = event_buffer_new($client, ['\HttpServer\Module\Server\EpollModel', 'read'], null, ['\HttpServer\Module\Server\EpollModel', 'error'], $client);
+//        var_dump($buffer);
+//
+//        // 关联缓存事件到事件库
+//        event_buffer_base_set($buffer, $base);
+//        // 缓存事件超时时间
+//        event_buffer_timeout_set($buffer, 5, 5);
+//        // 设置缓存事件读写的水印标记
+//        event_buffer_watermark_set($buffer, EV_READ, 0, 0xffffff);
+//        // 设置缓存事件的优先级
+//        event_buffer_priority_set($buffer, 10);
+//        // 启用缓存事件
+//        event_buffer_enable($buffer, EV_READ | EV_PERSIST);
+//        // 这里好像必需把$buffer赋给一个全局的变量
+//        $GLOBALS['_'] = $buffer;
     }
 
     static function read($buffer, $client)
