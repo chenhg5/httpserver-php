@@ -15,8 +15,8 @@ start -> read config -> initialize -> fork process -> read and parse request
 
 - [X] multi process model
 - [X] multi thread model
-- [ ] select/poll model
-- [ ] epoll/kqueue model
+- [X] select/poll model
+- [X] epoll/kqueue model
 - [ ] reator model
 - [X] http parser
 - [ ] fastcgi protocol
