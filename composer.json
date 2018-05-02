@@ -16,9 +16,6 @@
     "autoload": {
         "psr-4": {
             "HttpServer\\Module\\": "./module/"
-        },
-        "files": [
-            "module/system.php"
-        ]
+        }
     }
 }
