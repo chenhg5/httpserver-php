@@ -17,12 +17,14 @@ start -> read config -> initialize -> fork process -> read and parse request
 - [X] multi thread model
 - [X] select/poll model
 - [X] epoll/kqueue model
-- [ ] reator model
+- [X] reator model
 - [X] http parser
+- [X] logger
 - [ ] fastcgi protocol
 - [ ] load balance
 - [ ] cache response
-- [X] logger
 - [ ] https support
 - [ ] http 2.0 protocol
-- [ ] multi language 
+- [ ] multi language
+- [ ] monitoring
+- [ ] rate limit
