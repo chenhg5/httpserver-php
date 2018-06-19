@@ -2,7 +2,6 @@
 
 namespace HttpServer\Module\Server;
 
-
 use function posix_kill;
 use function pcntl_signal;
 

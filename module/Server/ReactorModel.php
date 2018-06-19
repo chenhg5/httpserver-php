@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chenhg5
- * Date: 2018/4/21
- * Time: 上午11:38
- */
 
 namespace HttpServer\Module\Server;
 

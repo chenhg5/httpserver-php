@@ -2,7 +2,6 @@
 
 namespace HttpServer\Module\Server;
 
-
 use function pcntl_signal;
 
 class MultiFixedProcessModel extends BaseModel

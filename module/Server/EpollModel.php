@@ -1,15 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chenhg5
- * Date: 2018/4/21
- * Time: 上午11:37
- */
 
 namespace HttpServer\Module\Server;
-
-
-use function var_dump;
 
 class EpollModel extends BaseModel
 {
