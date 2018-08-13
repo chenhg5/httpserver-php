@@ -15,6 +15,7 @@ class SelectPollModel extends BaseModel
         $_e = null;
         while (1) {
             $read = $master;
+            // 解占用cpu
             usleep(10000);
             // 这里的io复用指的是通过select的系统调用不采用accept的阻塞io，从而让io释放出来可以
             // accept其他的连接，io准备就绪后再通知用户这边
