@@ -36,7 +36,11 @@ class MultiFixedProcessModel extends BaseModel
                     $conn = @stream_socket_accept($this->serv, -1);
                     if ($conn == false) continue;
                     echo "process id: " . posix_getpid() . "\n";
-                    $request = @fread($conn, 30000);  // 粗暴的设置长度
+                    $request = "";
+                    // 粗暴的正则
+                    while (!preg_match('/\r?\n\r?\n/', $request)) {
+                        $request .= fread($conn, 1024);
+                    }
                     echo "connected\n";
                     echo "request info: \n\n" . $request . "\n";
 

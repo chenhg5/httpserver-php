@@ -32,7 +32,7 @@ class BaseModel
         // 使用 stream_* 而不用 socket_*
         // stream_* 支持更好
         // doc: https://stackoverflow.com/questions/9760548/php-sockets-vs-streams/9783856#9783856
-        $this->serv = stream_socket_server("tcp://0.0.0.0:8000", $errno, $errstr) or die("create server failed");
+        $this->serv = stream_socket_server("tcp://0.0.0.0:5005", $errno, $errstr) or die("create server failed");
     }
 }
 

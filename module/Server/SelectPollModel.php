@@ -40,7 +40,11 @@ class SelectPollModel extends BaseModel
                     }
 
                     if ($conn !== false) {
-                        $sock_data = fread($conn, 30000);
+                        // 粗暴的正则
+                        $sock_data = "";
+                        while (!preg_match('/\r?\n\r?\n/', $sock_data)) {
+                            $sock_data .= fread($conn, 1024);
+                        }
                         // 确认连接已经读完了，长连接需要，短连接一般就关闭了
                         if (!$sock_data) {
                             unset($master[array_search($conn, $master)]);

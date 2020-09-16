@@ -40,9 +40,9 @@ class SingleProcessCoroutineModel extends BaseModel
         yield $request = @fread($conn, 30000);  // 粗暴的设置长度
         echo "connected\n";
         echo "request info: \n\n" . $request . "\n";
-//            var_dump($this->parser->parseRequest($request));
+        // var_dump($this->parser->parseRequest($request));
 
-        // ② 根据路由配置与请求判断响应类型：  $response = HttpProcessor::process($request)
+        // ② 根据路由配置与请求判断响应类型：$response = HttpProcessor::process($request)
         // 1. 直接返回静态页面数据, 读取文件[css, html, pdf, etc]         FileReader::read($request)
         // 2. http 反向代理/负载均衡, 转发请求, 获取响应, 返回客户端        ProxyHelper::forward($request)
         // 3. fastcgi[php/python/ruby/lua] -> 脚本解释器 -> 获取响应     Fastcgi::get($request)
